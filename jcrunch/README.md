@@ -211,8 +211,55 @@ python jcrunch.py --package "/path/to/your-package.zip" --workbook "/path/to/AEM
 python jcrunch.py --package "C:\path\to\your-package.zip" --workbook "C:\path\to\AEM_Migration_Analysis_Tool_v3.xlsx"
 ```
 
-> **Quoting tip:** The opening `"` must be immediately followed by the drive letter — no spaces.
-> Wrong: `--package " C:\path\file.zip "` — Right: `--package "C:\path\file.zip"`
+> **PowerShell copy-paste rules:**
+> - Only copy the `python ...` line — **never** copy the `` ``` `` fence markers
+> - Every path must end with `"` immediately after the last character — **no space** before the closing quote
+> - The workbook argument must end with `xlsx"` — **not** `xlsx ''` or `xlsx '`
+>
+> Wrong: `--package "C:\path\file.zip " --workbook "C:\path\workbook.xlsx ''`
+> Right:  `--package "C:\path\file.zip" --workbook "C:\path\workbook.xlsx"`
+
+### Securian — Ready-to-Run Commands
+
+Copy and paste each command directly into PowerShell.
+Only copy the `python ...` line — never copy the `` ``` `` fence markers.
+
+**METADATA PROFILES**
+```powershell
+python jcrunch.py --package "C:\Users\steve\OneDrive\Documents\JCRUNCH\Securian-Folder_Metadata_Profiles.zip" --workbook "C:\Users\steve\OneDrive\Documents\JCRUNCH\AEM_Migration_Analysis_Tool_v3.xlsx"
+```
+
+**METADATA FIELDS**
+```powershell
+python jcrunch.py --package "C:\Users\steve\OneDrive\Documents\JCRUNCH\Securian-Metadata_Field_Analysis.zip" --workbook "C:\Users\steve\OneDrive\Documents\JCRUNCH\AEM_Migration_Analysis_Tool_v3.xlsx"
+```
+
+**NAMESPACE REGISTRY**
+```powershell
+python jcrunch.py --package "C:\Users\steve\OneDrive\Documents\JCRUNCH\Securian-Namespace_Registry.zip" --workbook "C:\Users\steve\OneDrive\Documents\JCRUNCH\AEM_Migration_Analysis_Tool_v3.xlsx"
+```
+
+**SEARCH FACETS**
+```powershell
+python jcrunch.py --package "C:\Users\steve\OneDrive\Documents\JCRUNCH\Securian-Search_Facets.zip" --workbook "C:\Users\steve\OneDrive\Documents\JCRUNCH\AEM_Migration_Analysis_Tool_v3.xlsx"
+```
+
+**TAXONOMY**
+```powershell
+python jcrunch.py --package "C:\Users\steve\OneDrive\Documents\JCRUNCH\Securian-Taxonomy.zip" --workbook "C:\Users\steve\OneDrive\Documents\JCRUNCH\AEM_Migration_Analysis_Tool_v3.xlsx"
+```
+
+**WORKFLOW LAUNCHERS**
+```powershell
+python jcrunch.py --package "C:\Users\steve\OneDrive\Documents\JCRUNCH\Securian-Workflow_Launchers.zip" --workbook "C:\Users\steve\OneDrive\Documents\JCRUNCH\AEM_Migration_Analysis_Tool_v3.xlsx"
+```
+
+**WORKFLOW MODELS**
+```powershell
+python jcrunch.py --package "C:\Users\steve\OneDrive\Documents\JCRUNCH\Securian-Workflow_Models.zip" --workbook "C:\Users\steve\OneDrive\Documents\JCRUNCH\AEM_Migration_Analysis_Tool_v3.xlsx"
+```
+
+---
 
 ### Run a specific phase only
 
