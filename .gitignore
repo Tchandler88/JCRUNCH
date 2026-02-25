@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environment
+.env
+
+# Database artifacts
+*.sqlite
+*.db
+
+# JCRUNCH runtime files
+jcrunch_done.tmp
+*.tmp
+
+# OS
+.DS_Store
+Thumbs.db

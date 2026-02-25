@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui">
+  <ribbon>
+    <tabs>
+      <tab id="tabJCRUNCH"
+           label="JCRUNCH"
+           insertAfterMso="TabView">
+        <group id="grpPackage"
+               label="AEM Package">
+          <button id="btnBrowse"
+                  label="Browse Package"
+                  screentip="Select AEM Package .zip"
+                  supertip="Open a file dialog to choose the AEM Package Manager export (.zip) to analyze."
+                  size="large"
+                  imageMso="FolderOpen"
+                  onAction="OnBrowsePackage"/>
+          <button id="btnRun"
+                  label="Run JCRUNCH"
+                  screentip="Run the JCRUNCH pipeline"
+                  supertip="Parse the selected AEM package and populate all Phase sheets in this workbook."
+                  size="large"
+                  imageMso="PlaybackPlay"
+                  onAction="OnRunJCRUNCH"/>
+        </group>
+        <group id="grpStatus"
+               label="Status">
+          <labelControl id="lblStatus"
+                        label="Select a package to begin"/>
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
