@@ -59,6 +59,10 @@ Excel workbook (`AEM_Migration_Analysis_Tool_v3.xlsx`).
 
 ## Installation
 
+> **Windows users:** Use **PowerShell** (search "PowerShell" in the Start menu).
+> All `python`, `pip`, and `cd` commands below work identically in PowerShell.
+> Do **not** type `bash` — it is not needed and is not installed by default on Windows.
+
 ### 1. Clone or download the repository
 
 ```bash
@@ -196,10 +200,19 @@ Open a terminal, navigate into the `jcrunch/` folder, and run:
 
 ### Basic run (all phases)
 
+**Mac / Linux:**
 ```bash
 cd jcrunch
 python jcrunch.py --package "/path/to/your-package.zip" --workbook "/path/to/AEM_Migration_Analysis_Tool_v3.xlsx"
 ```
+
+**Windows (PowerShell) — open PowerShell, navigate to the `jcrunch` folder, then run:**
+```powershell
+python jcrunch.py --package "C:\path\to\your-package.zip" --workbook "C:\path\to\AEM_Migration_Analysis_Tool_v3.xlsx"
+```
+
+> **Quoting tip:** The opening `"` must be immediately followed by the drive letter — no spaces.
+> Wrong: `--package " C:\path\file.zip "` — Right: `--package "C:\path\file.zip"`
 
 ### Run a specific phase only
 
@@ -417,9 +430,19 @@ If not found, reinstall Python and check **"Add Python to PATH"** during setup.
 The `jcrunch/` folder must be in the same directory as the workbook.
 Check that your layout matches the [required structure](#2-place-the-excel-workbook-next-to-the-jcrunch-folder).
 
-### "Package file not found"
-The path to the `.zip` must be a full path with no special characters.
-Avoid paths that contain brackets `[]` or other unusual characters.
+### "Package file not found" even though the path looks correct
+The path likely has a leading or trailing space inside the quotes — a common copy-paste mistake.
+
+```
+Wrong:  --package " C:\Users\steve\file.zip "
+Right:  --package "C:\Users\steve\file.zip"
+```
+
+The `"` must be immediately next to the drive letter `C:\`. No spaces inside the quotes.
+
+### "Package file not found" — special characters
+The path to the `.zip` must not contain brackets `[]` or other special characters.
+Rename the file or move it to a simpler path if needed.
 
 ### Workbook is not refreshing after a run
 The VBA calls `ThisWorkbook.RefreshAll` on completion. If your workbook has
