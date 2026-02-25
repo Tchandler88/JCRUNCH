@@ -278,52 +278,28 @@ Setup requires two steps: importing the VBA module and installing the ribbon XML
 
 ### Step B — Install the Ribbon XML
 
-The ribbon XML cannot be imported through Excel's UI — it must be injected directly
-into the workbook file.
+Run the injector script — it handles everything automatically and is safe to re-run:
 
-1. **Close Excel completely** (the file must not be open)
+```bash
+python jcrunch/vba/inject_ribbon.py --workbook "AEM_Migration_Analysis_Tool_v3.xlsx"
+```
 
-2. **Rename the workbook** from `.xlsm` to `.zip`
-   > Example: `AEM_Migration_Analysis_Tool_v3.xlsm` → `AEM_Migration_Analysis_Tool_v3.zip`
+This produces a new file alongside the original:
 
-3. **Open the zip file** using Windows Explorer or 7-Zip
+```
+AEM_Migration_Analysis_Tool_v3_ribbon.xlsm
+```
 
-4. **Create a `customUI/` folder** inside the zip (if it doesn't exist)
+1. **Open `AEM_Migration_Analysis_Tool_v3_ribbon.xlsm`** in Excel
+2. Click **Enable Content** if prompted (allows macros)
+3. The **JCRUNCH** tab will appear in the ribbon
+4. If the VBA module is not yet imported, complete Step A on this new file
 
-5. **Copy the ribbon XML** into the zip:
-   - Source: `jcrunch/vba/JCRUNCH_RibbonUI.xml`
-   - Destination inside zip: `customUI/customUI14.xml`
+> The original workbook is never modified. The `_ribbon.xlsm` file is your working copy going forward.
 
-6. **Edit `_rels/.rels`** inside the zip:
-   Open `_rels/.rels` in a text editor and add this line inside the `<Relationships>` element:
-
-   ```xml
-   <Relationship Id="rId99"
-     Type="http://schemas.microsoft.com/office/2007/relationships/ui/extensibility"
-     Target="customUI/customUI14.xml"/>
-   ```
-
-   The file should look like this when done:
-
-   ```xml
-   <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-   <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-     <Relationship Id="rId1" Type="..." Target="xl/workbook.xml"/>
-     <!-- ... existing entries ... -->
-     <Relationship Id="rId99"
-       Type="http://schemas.microsoft.com/office/2007/relationships/ui/extensibility"
-       Target="customUI/customUI14.xml"/>
-   </Relationships>
-   ```
-
-7. **Save and close** the zip file
-
-8. **Rename** the file back from `.zip` to `.xlsm`
-
-9. **Open Excel** — the **JCRUNCH** tab will appear in the ribbon
-
-> **Tip:** Tools like [Office RibbonX Editor](https://github.com/fernandreu/office-ribbonx-editor)
-> can automate steps 2–8 if you prefer a GUI approach.
+> **What the script does:** reads the workbook as a zip, adds `customUI/customUI14.xml`,
+> patches `_rels/.rels` and `[Content_Types].xml`, and writes a brand-new valid zip.
+> No manual editing — no corruption risk.
 
 ---
 
