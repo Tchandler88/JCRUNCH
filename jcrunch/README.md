@@ -224,6 +224,20 @@ python jcrunch.py --package "C:\path\to\your-package.zip" --workbook "C:\path\to
 Copy and paste each command directly into PowerShell.
 Only copy the `python ...` line — never copy the `` ``` `` fence markers.
 
+#### Combined — all 7 packages in one run (recommended)
+
+This produces a single merged report across all packages:
+
+```powershell
+python jcrunch.py --package "C:\Users\steve\OneDrive\Documents\JCRUNCH\Securian-Folder_Metadata_Profiles.zip" --package "C:\Users\steve\OneDrive\Documents\JCRUNCH\Securian-Metadata_Field_Analysis.zip" --package "C:\Users\steve\OneDrive\Documents\JCRUNCH\Securian-Namespace_Registry.zip" --package "C:\Users\steve\OneDrive\Documents\JCRUNCH\Securian-Search_Facets.zip" --package "C:\Users\steve\OneDrive\Documents\JCRUNCH\Securian-Taxonomy.zip" --package "C:\Users\steve\OneDrive\Documents\JCRUNCH\Securian-Workflow_Launchers.zip" --package "C:\Users\steve\OneDrive\Documents\JCRUNCH\Securian-Workflow_Models.zip" --workbook "C:\Users\steve\OneDrive\Documents\JCRUNCH\AEM_Migration_Analysis_Tool_v3.xlsx"
+```
+
+> Each `--package` flag adds one zip. All packages are merged into a single harvest
+> before any auditing or writing — the workbook is written once at the end.
+> The workbook is automatically cleared before each write so stale rows never remain.
+
+#### Or run each package individually
+
 **METADATA PROFILES**
 ```powershell
 python jcrunch.py --package "C:\Users\steve\OneDrive\Documents\JCRUNCH\Securian-Folder_Metadata_Profiles.zip" --workbook "C:\Users\steve\OneDrive\Documents\JCRUNCH\AEM_Migration_Analysis_Tool_v3.xlsx"

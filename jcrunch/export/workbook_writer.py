@@ -71,6 +71,9 @@ def write_all_phases(harvest: dict, workbook_path: str):
     Starts writing at row 4. Never touches AI BOT or MANUAL columns.
     Saves back to workbook_path when done.
     """
+    # Clear stale rows from all phase sheets before writing
+    clear_phase_data(workbook_path)
+
     print(f"   [>>] Loading workbook: {workbook_path}")
     wb = openpyxl.load_workbook(workbook_path)
 
